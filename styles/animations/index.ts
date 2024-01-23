@@ -1,4 +1,4 @@
-import { Direction } from '@/libs/types';;
+import { Direction } from '@/src/lib/types';;
 
 import { Variants } from 'framer-motion';
 
@@ -113,22 +113,4 @@ export const getSectionAnimation = {
   viewport: { once: true },
 };
 
-// * For projects
 
-export const projectVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 150,
-      damping: 20,
-      delay: 0.2 * i,
-      // duration: 0.5,
-    },
-  }),
-};
