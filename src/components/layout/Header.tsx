@@ -26,7 +26,8 @@ const LogoPart = () => {
         className="mt-3"
       >
         <Link href="/">
-          <Image src={Logo} alt="logo"></Image>
+          {/* <Image src={Logo} alt="logo"></Image> */}
+          <span className="text-slate-900 text-2xl">Bridge App</span>
         </Link>
       </motion.div>
     </div>
@@ -49,17 +50,16 @@ const NavButtons = ({ headStrings }: Props) => {
         id="logo"
         className="mt-3 flex"
       >
-        <button
+        {/* <button
           type="button"
           className="bg-transparent text-gray-50 px-5 py-2.5 me-2 mb-2 text-sm rounded-lg border hover:bg-gray-100 hover:text-blue-700 "
         >
           {headStrings.btn_history}
-        </button>
+        </button> */}
         {!isConnected ? (
           <button
             type="button"
-
-            className=" bg-indigo-700  text-white px-5 py-2.5 me-2 mb-2 text-sm rounded-lg hover:bg-blue-900 "
+            className=" bg-slate-800  text-white px-5 py-2.5 me-2 mb-2 text-sm rounded-lg hover:bg-slate-900 "
             onClick={openConnectModal}
           >
             {headStrings.btn_connect}
@@ -67,9 +67,8 @@ const NavButtons = ({ headStrings }: Props) => {
         ) : (
           <button
             type="button"
-
             id="disconnect"
-            className=" bg-indigo-700  text-white px-5 py-2.5 me-2 mb-2 text-sm rounded-lg"
+            className=" bg-slate-800  text-white px-5 py-2.5 me-2 mb-2 text-sm rounded-lg"
             onClick={() => disconnect()}
           >
             {headStrings.btn_disconnect}

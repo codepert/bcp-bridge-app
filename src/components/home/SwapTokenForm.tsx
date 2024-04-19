@@ -22,7 +22,6 @@ const SwapTokenForm = ({
   handleMax,
   swapTokenFormData,
 }: props) => {
-
   const handleMaxButtonClick = () => {
     handleMax();
   };
@@ -40,16 +39,17 @@ const SwapTokenForm = ({
           ? swapTokenFormData.fromText
           : swapTokenFormData.ToText}
       </p>
-      <div className="lg:flex md:flex sm:flex w-full gap-1">
-        <div className="py-2 bg-gray-800 rounded-xl py-5 px-5 mt-2">
-          <Image
+      <div className="lg:flex md:flex sm:flex w-full gap-1 ">
+        <div className="py-2  rounded-xl py-5 px-5 mt-2 bg-slate-200">
+          {/* <Image
             src={chainIcon}
             alt="alt"
             width={50}
             height={50}
             className="m-auto"
-          />
+          /> */}
           <div className="text-center pt-4">
+            {/* <p className="">{swapTokenFormData.chainName}</p> */}
             <p className="">{swapTokenFormData.chainName}</p>
             {!swapTokenFormData.isConnected ? (
               <span
@@ -65,8 +65,8 @@ const SwapTokenForm = ({
             )}
           </div>
         </div>
-        <div className="grow bg-gray-800 rounded-xl py-5 px-5 mt-2">
-          <p className="text-blue-200 text-sm">
+        <div className="grow  rounded-xl py-5 px-5 mt-2 bg-slate-200">
+          <p className=" text-slate-700 text-sm">
             {swapTokenFormData.actionText}
           </p>
           <div className="flex justify-between mt-3">
@@ -91,12 +91,12 @@ const SwapTokenForm = ({
               )}
             </div>
             <div className="flex justify-between ">
-              <Image src={tokenIcon} alt="lyx" />
+              {/* <Image src={tokenIcon} alt="lyx" /> */}
               <div className="ml-2 mt-1">{swapTokenFormData.tokenText}</div>
             </div>
           </div>
           <div className="mt-[25px]">
-            <div className="flex text-blue-200 text-sm">
+            <div className="flex text-slate-700 text-sm">
               <div className="mr-auto">
                 ${swapTokenFormData.priceVal?.toString()}
               </div>

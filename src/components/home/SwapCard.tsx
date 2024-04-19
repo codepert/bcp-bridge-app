@@ -12,15 +12,14 @@ import SwapButton from "./SwapButton";
 import { chainType } from "@/src/utils/types";
 import { SwapCardStrings, SwapCardProps } from "@/src/utils/types";
 
-
 const ETH_FORM: chainType = {
   chainType: COMMON.ETH_MAIN,
   chainIcon: ETH,
-  chainName: "Ethereum",
+  chainName: "B",
   btnText: "Connect Wallet",
   accountInfo: {
     address: "",
-    balance: 0
+    balance: 0,
   },
   tokenIcon: LYX,
   tokenText: "wLYX",
@@ -32,46 +31,68 @@ const ETH_FORM: chainType = {
 const LUXSO_FORM: chainType = {
   chainType: COMMON.LUXSO_MAIN,
   chainIcon: BLYX,
-  chainName: "LUKSO",
+  chainName: "A",
   btnText: "Connect Wallet",
   accountInfo: {
     address: "",
-    balance: 0
+    balance: 0,
   },
   tokenIcon: LYX,
   tokenText: "LYX",
   tokenAmount: 0,
   tokenBalance: 0,
   tokenPrice: 1,
-}
+};
 
-type props = { isConnected: boolean, accountAddress: string, accountBalance: string, openConnectModal: any, chain: any, switchNetwork: any, swapcard_strings: SwapCardStrings };
+type props = {
+  isConnected: boolean;
+  accountAddress: string;
+  accountBalance: string;
+  openConnectModal: any;
+  chain: any;
+  switchNetwork: any;
+  swapcard_strings: SwapCardStrings;
+};
 
-const SwapCard = ({ isConnected, accountAddress, accountBalance, openConnectModal, chain, switchNetwork, swapcard_strings }: props) => {
+const SwapCard = ({
+  isConnected,
+  accountAddress,
+  accountBalance,
+  openConnectModal,
+  chain,
+  switchNetwork,
+  swapcard_strings,
+}: props) => {
   const [currentChain, setCurrentChain] = useState(COMMON.LUXSO_MAIN);
-  const [swapTokenFromFormState, setSwapTokenFromFormState] = useState({ ...LUXSO_FORM });
-  const [swapTokenToFormState, setSwapTokenToFormState] = useState({ ...ETH_FORM });
+  const [swapTokenFromFormState, setSwapTokenFromFormState] = useState({
+    ...LUXSO_FORM,
+  });
+  const [swapTokenToFormState, setSwapTokenToFormState] = useState({
+    ...ETH_FORM,
+  });
 
   useEffect(() => {
     if (chain?.id == COMMON.ETH_MAIN) {
       setSwapTokenFromFormState({ ...ETH_FORM });
-      setSwapTokenToFormState({ ...LUXSO_FORM })
+      setSwapTokenToFormState({ ...LUXSO_FORM });
       setCurrentChain(COMMON.ETH_MAIN);
     } else if (chain?.id == COMMON.LUXSO_MAIN) {
       setSwapTokenFromFormState({ ...LUXSO_FORM });
       setSwapTokenToFormState({ ...ETH_FORM });
       setCurrentChain(COMMON.LUXSO_MAIN);
     }
-  }, [chain])
+  }, [chain]);
 
   const onChangeVal = (tokenAmount: number) => {
     if (currentChain == COMMON.ETH_MAIN) {
-      LUXSO_FORM.tokenAmount = ETH_FORM.tokenPrice / LUXSO_FORM.tokenPrice * Number(tokenAmount);
+      LUXSO_FORM.tokenAmount =
+        (ETH_FORM.tokenPrice / LUXSO_FORM.tokenPrice) * Number(tokenAmount);
       ETH_FORM.tokenAmount = tokenAmount;
       setSwapTokenFromFormState({ ...ETH_FORM });
       setSwapTokenToFormState({ ...LUXSO_FORM });
     } else if (currentChain == COMMON.LUXSO_MAIN) {
-      ETH_FORM.tokenAmount = LUXSO_FORM.tokenPrice / ETH_FORM.tokenPrice * Number(tokenAmount);
+      ETH_FORM.tokenAmount =
+        (LUXSO_FORM.tokenPrice / ETH_FORM.tokenPrice) * Number(tokenAmount);
       LUXSO_FORM.tokenAmount = tokenAmount;
       setSwapTokenFromFormState({ ...LUXSO_FORM });
       setSwapTokenToFormState({ ...ETH_FORM });
@@ -92,8 +113,8 @@ const SwapCard = ({ isConnected, accountAddress, accountBalance, openConnectModa
     maxText: swapcard_strings.max_txt,
     priceVal: 0.0,
     fromText: swapcard_strings.from_label_txt,
-    ToText: swapcard_strings.to_label_txt
-  }
+    ToText: swapcard_strings.to_label_txt,
+  };
 
   const swapTokenReceiveForm: SwapCardProps = {
     send: false,
@@ -109,8 +130,8 @@ const SwapCard = ({ isConnected, accountAddress, accountBalance, openConnectModa
     maxText: swapcard_strings.max_txt,
     priceVal: 0.0,
     fromText: swapcard_strings.from_label_txt,
-    ToText: swapcard_strings.to_label_txt
-  }
+    ToText: swapcard_strings.to_label_txt,
+  };
 
   const handleMax = () => {
     if (currentChain == COMMON.ETH_MAIN) {
@@ -122,18 +143,17 @@ const SwapCard = ({ isConnected, accountAddress, accountBalance, openConnectModa
       setSwapTokenFromFormState({ ...LUXSO_FORM });
       onChangeVal(LUXSO_FORM.tokenAmount);
     }
-  }
+  };
 
   const onSwap = async () => {
-    if (!isConnected)
-      return;
+    if (!isConnected) return;
     let modifyChainId = COMMON.ETH_MAIN;
     if (currentChain == COMMON.ETH_MAIN) {
       modifyChainId = COMMON.LUXSO_MAIN;
     }
     const network = await switchNetwork({
       chainId: modifyChainId,
-    })
+    });
   };
 
   return (
@@ -157,6 +177,6 @@ const SwapCard = ({ isConnected, accountAddress, accountBalance, openConnectModa
       />
     </>
   );
-}
+};
 
 export default SwapCard;

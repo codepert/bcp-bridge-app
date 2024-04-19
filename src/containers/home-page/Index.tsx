@@ -53,7 +53,7 @@ export default function Home({ headStrings }: camelCase) {
 
   return (
     <>
-      <div className="lg:w-[617px] xl:w-[617px] mx-auto mt-5 text-white">
+      <div className="lg:w-[617px] xl:w-[617px] mx-auto mt-5 text-slate-800">
         <motion.div
           variants={fadeIn(0.6)}
           initial="hidden"
@@ -82,7 +82,7 @@ export default function Home({ headStrings }: camelCase) {
           id="logo"
           className=""
         >
-          <div className="py-10 px-10 rounded-xl border-2 border-blue-900 bg-gray-900">
+          <div className="py-10 px-10 rounded-xl border border-slate-400 ">
             <SwapCard
               isConnected={isConnected}
               accountAddress={address as string}
@@ -94,14 +94,14 @@ export default function Home({ headStrings }: camelCase) {
             ></SwapCard>
             {!isConnected ? (
               <button
-                className="bg-indigo-700 hover:bg-indigo-800 py-3 rounded-xl w-full mt-4"
+                className="bg-slate-800 text-white hover:bg-slate-900 py-3 rounded-xl w-full mt-4"
                 onClick={openConnectModal}
               >
                 {headStrings.Bridge_Buttons.connect_button_txt}
               </button>
             ) : (
               <button
-                className="bg-indigo-700 hover:bg-indigo-800 py-3 rounded-xl w-full mt-4"
+                className="bg-slate-800 text-white hover:bg-slate-900 py-3 rounded-xl w-full mt-4"
                 onClick={onSwap}
               >
                 {headStrings.Bridge_Buttons.swap_button_txt}

@@ -23,5 +23,20 @@ input::-webkit-inner-spin-button {
 }
 
 body {
-  background-color: #171C43;
+  color: rgb(var(--foreground-rgb));
+  /* background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); */
+  background: #fff;
+  /* transition-property: background-color; */
+  transition-duration: 200ms;
+  line-height: 1.5;
+}
+
+.bg {
+  background-image: url("/bg.svg");
+  background-size: cover;
 }
